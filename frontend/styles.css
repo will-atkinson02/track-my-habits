@@ -1,0 +1,78 @@
+body {
+    --white-text: white;
+    --column-background: rgb(47, 44, 44);
+
+    margin: 0;
+}
+
+.sidebar {
+    /* Display */
+    display: flex;
+    flex-direction: column;
+    width: 25vw;
+    height: 100vh;
+
+    /* Colour */
+    color: var(--white-text);
+    background-color: var(--column-background);
+
+    /* Text */
+    font-size: 25px;
+}
+
+.username {
+    /* Display */
+    display: flex;
+    align-items: center;
+    height: 10vh;
+    padding-left: 2vw;
+    border-bottom: 1px solid white;
+
+    /* Text */
+    font-size: 35px;
+}
+
+.signout-settings-container {
+    /* Display */
+    display: flex;
+    align-items: center;
+    padding-left: 2vw;
+    height: 5vh;
+
+    /* Text */
+    font-size: 18px;
+}
+
+.settings {
+    /* Display */
+    margin-right: 5vw;
+}
+
+.habit-name {
+    /* Display */
+    display: flex;
+    align-items: center;
+    padding-left: 2vw;
+    height: 10vh;
+
+    /* Colour */
+    color: black;
+    background-color: rgb(181, 181, 181);
+}
+
+.new-habit {
+    /* Display */
+    display: flex;
+    align-items: center;
+    padding-left: 2vw;
+    height: 10vh;
+
+    /* Colour */
+    color: white;
+    background-color: black;
+}
+
+.fa-solid {
+    /* Text */
+    font-size: 15px;
+}
