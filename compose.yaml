@@ -1,38 +1,42 @@
+version: "3.8"
+
 services:
-  server:
-    build:
-      context: ./habitsBackEnd
-    ports:
-      - 8080:8080
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/habit_tracker_db
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: rootpassword
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
-      SPRING_JPA_SHOW_SQL: true
-    depends_on:
-    - mysql
-  web:
-    build:
-      context: ./habitsFrontEnd
-    ports:
-      - 80:80
   mysql:
-    image: mysql:8.0
-    container_name: mysql
+    image: mysql:8
+    container_name: mysql-habitsdb
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: habit_tracker_db
+      MYSQL_DATABASE: habitsdb
+      MYSQL_ROOT_PASSWORD: my_secure_password
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
     ports:
       - "3306:3306"
     volumes:
       - mysql-data:/var/lib/mysql
-    networks:
-      - default
+
+  spring-app:
+    build: ./backend
+    container_name: habitsbackend
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/habitsdb
+      SPRING_DATASOURCE_USERNAME: myuser
+      SPRING_DATASOURCE_PASSWORD: mypassword
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_PROFILES_ACTIVE: dev
+  nginx:
+    image: nginx:alpine
+    container_name: habitsfrontend
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+    - ./frontend:/usr/share/nginx/html
 
 volumes:
   mysql-data:
-
-networks:
-  default:
-    driver: bridge
