@@ -2,6 +2,8 @@ body {
     --white-text: white;
     --column-background: rgb(47, 44, 44);
 
+    /* Display */
+    display: flex;
     margin: 0;
 }
 
@@ -75,4 +77,12 @@ body {
 .fa-solid {
     /* Text */
     font-size: 15px;
+}
+
+.main {
+    /* Display */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
 }
